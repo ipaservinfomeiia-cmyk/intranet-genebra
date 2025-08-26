@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload de Dados - Intranet Genebra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { color-scheme: light; }
+        html.dark { color-scheme: dark; }
+        body { font-family: 'Lato', sans-serif; }
+        .font-lora { font-family: 'Lora', serif; }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        main > section { animation: fadeInUp 0.8s ease-out forwards; }
+    </style>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+</head>
+<body class="bg-stone-50 text-stone-700 dark:bg-slate-900 dark:text-slate-300 transition-colors duration-500">
+
+    <header class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-lg shadow-sm dark:shadow-lg sticky top-0 z-50 border-b border-stone-200 dark:border-slate-700">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                 <img src="images/logo-genebra.jpg" alt="Logo Escola Cristã Genebra" class="h-12 mr-4 rounded-md">
+            </div>
+            
+            <nav class="hidden md:flex items-center space-x-8 font-lato">
+                <a href="index.html" class="text-stone-600 dark:text-slate-300 hover:text-blue-700 dark:hover:text-blue-400 transition duration-300">Início</a>
+                <a href="documentos.html" class="text-stone-600 dark:text-slate-300 hover:text-blue-700 dark:hover:text-blue-400 transition duration-300">Documentos</a>
+                <a href="planos_aula.html" class="text-stone-600 dark:text-slate-300 hover:text-blue-700 dark:hover:text-blue-400 transition duration-300">Planos de Aula</a>
+                <a href="upload.html" class="text-blue-700 dark:text-blue-400 font-bold">Upload de Dados</a>
+            </nav>
+
+            <div class="flex items-center">
+                 <span class="hidden sm:inline text-stone-600 dark:text-slate-300 mr-4">Bem-vindo, Administrador</span>
+                 
+                 <button id="theme-toggle" type="button" class="text-stone-500 dark:text-slate-400 hover:bg-stone-100 dark:hover:bg-slate-700 focus:outline-none focus:ring-4 focus:ring-stone-200 dark:focus:ring-slate-700 rounded-lg text-sm p-2.5 mr-4">
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm-.707 12.122l.707-.707a1 1 0 011.414 1.414l-.707.707a1 1 0 01-1.414-1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                 </button>
+
+                 <a href="#" id="logout-button" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 shadow hover:shadow-md transition-all duration-300 text-sm font-bold">Sair</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-6">
+        <section class="w-full max-w-4xl mx-auto">
+            <h1 class="font-lora text-4xl font-bold text-stone-800 dark:text-slate-100 mb-2 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-3 text-blue-600 dark:text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                </svg>
+                Upload - Base de Dados GENEBRA
+            </h1>
+            <p class="text-stone-500 dark:text-slate-400 mb-6">Envie os documentos (PDF, DOCX, TXT) para alimentar a base de conhecimento da IA.</p>
+            
+            <div class="mb-8 p-4 bg-blue-50 dark:bg-slate-800 border-l-4 border-blue-500 dark:border-blue-400 rounded-r-lg">
+                <h3 class="font-lora text-lg font-semibold text-blue-800 dark:text-blue-300 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" /></svg>
+                    Dicas para um Melhor Aprendizado da IA
+                </h3>
+                <ul class="mt-2 list-disc list-inside text-sm text-stone-600 dark:text-slate-400 space-y-1">
+                    <li><strong>Qualidade do Texto:</strong> A IA aprende com o que lê. Documentos bem escritos, estruturados e sem erros de digitação geram melhores respostas.</li>
+                    <li><strong>Contexto é Chave:</strong> Envie documentos completos. Em vez de uma lista de exercícios, envie o capítulo do livro que contém a matéria e os exercícios.</li>
+                    <li><strong>Formatação Simples:</strong> A IA lê texto. Títulos, parágrafos e listas são ótimos. Tabelas complexas ou imagens com texto podem não ser lidas corretamente.</li>
+                </ul>
+            </div>
+
+            <div class="bg-white/70 dark:bg-slate-800/70 backdrop-blur-md p-8 rounded-xl shadow-2xl border border-stone-200 dark:border-slate-700">
+                <div id="drop-zone" class="border-2 border-dashed border-stone-300 dark:border-slate-600 rounded-lg p-10 text-center cursor-pointer hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-slate-700 transition-colors">
+                    <svg class="mx-auto h-12 w-12 text-stone-400 dark:text-slate-500" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                        <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <p class="mt-5 text-sm text-stone-600 dark:text-slate-300">
+                        <span class="font-semibold">Arraste e solte os ficheiros aqui</span>, ou
+                    </p>
+                    <button id="browse-btn" class="mt-2 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-500">
+                        selecione a partir do seu computador
+                    </button>
+                    <input type="file" id="file-input" multiple class="hidden">
+                </div>
+
+                <div id="file-list-container" class="mt-6 hidden">
+                    <h3 class="font-lora text-xl font-semibold text-stone-700 dark:text-slate-200 mb-2">Ficheiros Selecionados:</h3>
+                    <ul id="file-list" class="space-y-2">
+                        <!-- Ficheiros selecionados aparecerão aqui -->
+                    </ul>
+                </div>
+
+                <div class="mt-8 text-center">
+                    <button id="upload-button" class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 font-bold text-lg disabled:bg-stone-400 dark:disabled:bg-slate-600 disabled:cursor-not-allowed shadow-lg transition-all duration-300" disabled>
+                        Enviar para a Base de Dados
+                    </button>
+                </div>
+                
+                <div id="status-message" class="mt-6 text-center font-medium h-6"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white dark:bg-slate-800 mt-12 border-t border-stone-200 dark:border-slate-700">
+        <div class="container mx-auto px-6 py-4 text-center text-stone-500 dark:text-slate-400">
+            <p class="text-sm">&copy; 2025 Escola Cristã Genebra. Central de Inteligência Artificial (modelo beta 0.1).</p>
+        </div>
+    </footer>
+
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const darkIcon = document.getElementById('theme-toggle-dark-icon');
+            const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+            const applyTheme = (isDark) => {
+                if (isDark) {
+                    document.documentElement.classList.add('dark');
+                    lightIcon.classList.remove('hidden');
+                    darkIcon.classList.add('hidden');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    darkIcon.classList.remove('hidden');
+                    lightIcon.classList.add('hidden');
+                }
+            };
+
+            const toggleTheme = () => {
+                const isDark = document.documentElement.classList.toggle('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                applyTheme(isDark);
+            };
+
+            themeToggleBtn.addEventListener('click', toggleTheme);
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            applyTheme(savedTheme === 'dark' || (savedTheme === null && prefersDark));
+
+            const dropZone = document.getElementById('drop-zone');
+            const fileInput = document.getElementById('file-input');
+            const browseBtn = document.getElementById('browse-btn');
+            const fileListUI = document.getElementById('file-list');
+            const fileListContainer = document.getElementById('file-list-container');
+            const uploadButton = document.getElementById('upload-button');
+            const statusMessage = document.getElementById('status-message');
+            const backendUrl = 'http://localhost:5000';
+            const token = localStorage.getItem('jwt_token');
+
+            let filesToUpload = [];
+
+            const highlight = () => dropZone.classList.add('border-blue-500', 'bg-blue-50', 'dark:bg-slate-700');
+            const unhighlight = () => dropZone.classList.remove('border-blue-500', 'bg-blue-50', 'dark:bg-slate-700');
+
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, e => e.preventDefault(), false);
+            });
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropZone.addEventListener(eventName, highlight, false);
+            });
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, unhighlight, false);
+            });
+
+            dropZone.addEventListener('drop', (e) => handleFiles(e.dataTransfer.files), false);
+            browseBtn.addEventListener('click', () => fileInput.click());
+            fileInput.addEventListener('change', () => handleFiles(fileInput.files));
+
+            const handleFiles = (files) => {
+                filesToUpload.push(...Array.from(files));
+                updateFileListUI();
+            };
+
+            const updateFileListUI = () => {
+                fileListUI.innerHTML = '';
+                if (filesToUpload.length === 0) {
+                    fileListContainer.classList.add('hidden');
+                    uploadButton.disabled = true;
+                    return;
+                }
+
+                fileListContainer.classList.remove('hidden');
+                filesToUpload.forEach((file, index) => {
+                    const li = document.createElement('li');
+                    li.className = 'flex justify-between items-center bg-stone-100 dark:bg-slate-700 p-2 rounded-md text-sm';
+                    li.innerHTML = `
+                        <span class="text-stone-700 dark:text-slate-300 truncate pr-2">${file.name}</span>
+                        <button data-index="${index}" class="remove-file-btn text-red-500 hover:text-red-700 font-bold text-lg">&times;</button>
+                    `;
+                    fileListUI.appendChild(li);
+                });
+                uploadButton.disabled = false;
+            };
+
+            fileListUI.addEventListener('click', (e) => {
+                if (e.target.classList.contains('remove-file-btn')) {
+                    const index = parseInt(e.target.getAttribute('data-index'), 10);
+                    filesToUpload.splice(index, 1);
+                    updateFileListUI();
+                }
+            });
+
+            const uploadFiles = async () => {
+                if (filesToUpload.length === 0) return;
+
+                const formData = new FormData();
+                filesToUpload.forEach(file => {
+                    formData.append('files', file);
+                });
+
+                statusMessage.textContent = 'A enviar ficheiros...';
+                statusMessage.className = 'mt-6 text-center font-medium text-blue-600 dark:text-blue-400';
+                uploadButton.disabled = true;
+
+                try {
+                    const response = await fetch(`${backendUrl}/upload`, {
+                        method: 'POST',
+                        // **CORREÇÃO APLICADA AQUI**
+                        headers: { 
+                            'Authorization': `Bearer ${token}` 
+                        },
+                        body: formData,
+                    });
+
+                    const result = await response.json();
+
+                    if (!response.ok) {
+                        throw new Error(result.message || 'Erro desconhecido no servidor.');
+                    }
+
+                    statusMessage.textContent = result.message;
+                    statusMessage.className = 'mt-6 text-center font-medium text-emerald-600 dark:text-emerald-400';
+                    filesToUpload = [];
+                    updateFileListUI();
+
+                } catch (error) {
+                    console.error('Erro no upload:', error);
+                    statusMessage.textContent = `Erro: ${error.message}`;
+                    statusMessage.className = 'mt-6 text-center font-medium text-red-500 dark:text-red-400';
+                } finally {
+                    uploadButton.disabled = false;
+                }
+            };
+
+            uploadButton.addEventListener('click', uploadFiles);
+        });
+    </script>
+</body>
+</html>
